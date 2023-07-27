@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-
+import "./GalleryNavigation.css";
 const GalleryNavigation = (props) => {
 const {galleries} = props;
 return (
@@ -8,7 +8,7 @@ return (
     <NavLink to="/">Gallery 1</NavLink>
     {galleries.map((gallery) => {
         return (
-            <NavLink to={`/${gallery.id}`} key={gallery.id}>{gallery.name}</NavLink>
+            <NavLink activeClassName = "active" to={`/${gallery.id}`} key={gallery.id}>{gallery.name}</NavLink>
         )
     }
     )}
