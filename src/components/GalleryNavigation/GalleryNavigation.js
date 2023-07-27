@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, Route, Switch } from 'react-router-dom'
 
 const GalleryNavigation = (props) => {
 const {galleries} = props;
@@ -12,7 +12,7 @@ return (
         )
     }
     )}
-    
+      <h1>hello</h1>
     </nav>
 
 )
