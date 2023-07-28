@@ -1,10 +1,21 @@
 import React from "react";
 import harvardArt from "./data/harvardArt";
 import GalleryNavigation from "./components/GalleryNavigation/GalleryNavigation";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route, Switch } from "react-router-dom";
 import GalleryView from "./components/GalleryView/index";
 function App() {
-  return <GalleryNavigation galleries={harvardArt.records} />;
+  return( 
+    <div className="page-wrapper">
+  <GalleryNavigation galleries={harvardArt.records} />
+  <Switch>
+
+  <Route path="/galleries/:galleryId">
+  <GalleryView/>
+  </Route>
+
+</Switch>
+</div>
+  );
 }
 
 export default App;
