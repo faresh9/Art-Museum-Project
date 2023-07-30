@@ -4,17 +4,21 @@ import GalleryNavigation from "./components/GalleryNavigation/GalleryNavigation"
 import { NavLink, Route, Switch } from "react-router-dom";
 import GalleryView from "./components/GalleryView/index";
 function App() {
-  return( 
+  return (
     <div className="page-wrapper">
-  <GalleryNavigation galleries={harvardArt.records} />
-  <Switch>
+      <GalleryNavigation galleries={harvardArt.records} />
+      <Switch>
+        <Route path="/galleries/:galleryId">
+          <GalleryView />
+        </Route>
 
-  <Route path="/galleries/:galleryId">
-  <GalleryView/>
-  </Route>
+        <Route exact path="/"></Route>
 
-</Switch>
-</div>
+        <Route>
+          <h1>404:Unknown Route</h1>
+        </Route>
+      </Switch>
+    </div>
   );
 }
 
