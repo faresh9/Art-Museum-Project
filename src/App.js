@@ -13,7 +13,8 @@ function App() {
         </Route>
 
         <Route exact path="/"></Route>
-
+        <h2>Home Page</h2>
+        <p>Look, but Don't Touch. Please select a Gallery in the navigation bar</p>
         <Route>
           <h1>404:Unknown Route</h1>
         </Route>
