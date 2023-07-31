@@ -7,7 +7,13 @@ function ArtImageTile({art}){
   return (
     <div>
       {art.map((work)=>
-      <NavLink to = ``
+      <NavLink to = {`/galleries/${galleryId}/art/${work.id}`}>
+
+      </NavLink>
+
+        <Route path = '/galleries/:galleryId/art/:artId'>
+
+        </Route>
   ))}
     </div>
   )
