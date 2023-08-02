@@ -1,20 +1,23 @@
-import React from "react";
-import harvardArt from "./data/harvardArt";
+import harvardArt from "./data/harvardArt.js";
 import GalleryNavigation from "./components/GalleryNavigation/GalleryNavigation";
-import { NavLink, Route, Switch } from "react-router-dom";
-import GalleryView from "./components/GalleryView/index";
+import HomePage from "./components/HomePage/HomePage";
+import ArtDescription from "./components/ArtDescription";
+import { NavLink, Route, Switch, useParams } from "react-router-dom";
 function App() {
   return (
     <div className="page-wrapper">
-      <GalleryNavigation galleries={harvardArt.records} />
+      <NavLink to="/">Home</NavLink>
+
       <Switch>
-        <Route path="/galleries/:galleryId">
-          <GalleryView />
+        <Route exact path="/">
+          <HomePage />
+          <NavLink to="/galleries">Galleries</NavLink>
         </Route>
 
-        <Route exact path="/"></Route>
-        <h2>Home Page</h2>
-        <p>Look, but Don't Touch. Please select a Gallery in the navigation bar</p>
+        <Route path="/galleries">
+          <GalleryNavigation galleries={harvardArt.records} />
+        </Route>
+
         <Route>
           <h1>404:Unknown Route</h1>
         </Route>
