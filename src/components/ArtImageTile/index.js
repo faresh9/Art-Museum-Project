@@ -1,42 +1,13 @@
-import { Link, NavLink, useParams, Route } from "react-router-dom";
-//import "./ArtImageTile.css";
-import ArtDescription from "../ArtDescription";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function ArtImageTile({ art }) {
-  const { galleryId, artId } = useParams();
-
-  console.log("art", art);
-  // return(
-  //   <div>
-  //     {art.map(work => (
-  //       <li className='tile' key={work.id}>
-
-  //         {/* <NavLink to={`/galleries/${galleryId}/art/${work.id}`}> */}
-  //           <img src={work.images[0]?.baseimageurl} alt={work.title} />
-  //           <ArtDescription art={work}/>
-  //         {/* </NavLink> */}
-
-  //         <Route path="/galleries/:galleryId/art/:artId">
-  //           <ArtDescription art={art.find((artwork) => artwork.id === +artId)} />
-  //         </Route>
-
-  //       </li>
-  //     ))}
-  //   </div>
-
-  // )
+  const firstImage = art.images[0];
 
   return (
-    <div>
-      {art.map((work) => (
-        <li className="tile" key={work.id}>
-          <Link to={`/galleries/${galleryId}/art/${work.id}`}>
-            <img src={work.images[0]?.baseimageurl} alt={work.title} />
-            <ArtDescription art={work} />
-          </Link>
-        </li>
-      ))}
-    </div>
+    <Link to={`/galleries/${art.galleryId}/art/${art.id}`}>
+      <img src={firstImage} alt={`Artwork ${art.id}`} />
+    </Link>
   );
 }
 

@@ -1,48 +1,18 @@
-import { NavLink, useParams, Route } from "react-router-dom";
-//import "./GalleryView.css";
-import "../GalleryView";
-import ArtImageTile from "../ArtImageTile";
-import ArtDescription from "../ArtDescription";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import ArtImageTile from '../ArtImageTile';
 
-function GalleryView({ galleries }) {
-  const { galleryId, artId } = useParams();
-  const gallery = galleries.find((gallery) => gallery.id === +galleryId);
-
-  const artWork = gallery.objects.find((art) => art.id === +artId);
-
-  console.log(artWork);
-  // return (
-  //   <div >
-  //     <h1>{gallery.name}</h1>
-  //     <h1>{gallery.theme}</h1>
-
-  //     <h2>
-  //       <ArtImageTile art={gallery.objects} />
-  //     </h2>
-
-  //     <Route path="/galleries/:galleryId/art/:artId">
-  //       <ArtDescription
-  //         art={gallery.objects.find((art) => art.id === +artId)}
-  //       />
-  //     </Route>
-
-  //   </div>
-  // );
+function GalleryView({ gallery }) {
+  const { galleryId } = useParams();
 
   return (
     <div>
-      <h1>{gallery.name}</h1>
-      <h1>{gallery.theme}</h1>
-
-      <Route path="/galleries/:galleryId">
-        <ArtImageTile art={gallery.objects} />
-      </Route>
-
-      <Route path="/galleries/:galleryId/art/:artId">
-        <ArtDescription
-          art={gallery.objects.find((art) => art.id === +artId)}
-        />
-      </Route>
+      <h2>{gallery.name}</h2>
+      <div>
+        {gallery.objects.map((art) => (
+          <ArtImageTile key={art.id} art={art} />
+        ))}
+      </div>
     </div>
   );
 }

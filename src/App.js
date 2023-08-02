@@ -1,28 +1,32 @@
-import harvardArt from "./data/harvardArt.js";
-import GalleryNavigation from "./components/GalleryNavigation/GalleryNavigation";
-import HomePage from "./components/HomePage/HomePage";
-import ArtDescription from "./components/ArtDescription";
-import { NavLink, Route, Switch, useParams } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import harvardArt from './data/harvardArt';
+import GalleryNavigation from './components/GalleryNavigation';
+import GalleryView from './components/GalleryView';
+import HomePage from './components/HomePage';
+import PageNotFound from './components/PageNotFound';
+
 function App() {
+  const findGalleryById = (galleryId) => {
+    return harvardArt.records.find((gallery) => gallery.id === galleryId);
+  };
+
+  const GalleryViewWithGallery = ({ match }) => {
+    const gallery = findGalleryById(match.params.galleryId);
+    return <GalleryView gallery={gallery} />;
+  };
+
   return (
-    <div className="page-wrapper">
-      <NavLink to="/">Home</NavLink>
-
-      <Switch>
-        <Route exact path="/">
-          <HomePage />
-          <NavLink to="/galleries">Galleries</NavLink>
-        </Route>
-
-        <Route path="/galleries">
-          <GalleryNavigation galleries={harvardArt.records} />
-        </Route>
-
-        <Route>
-          <h1>404:Unknown Route</h1>
-        </Route>
-      </Switch>
-    </div>
+    <Router>
+      <div className="page-wrapper">
+        <GalleryNavigation galleries={harvardArt.records} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/galleries/:galleryId" render={GalleryViewWithGallery} />
+          <Route component={PageNotFound} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
